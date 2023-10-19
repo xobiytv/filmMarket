@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { fetchPopularMovie, fetchTopratedMovie, fetchTrendingMovie, fetchUpcomingMovie } from '../api';
 import TrendingMovies from '../componets/trendingMovies';
 import UpComingMovies from '../componets/UpComingMovies';
+import Loading from '../componets/loader'
 // import TopRatedMovies from '../componets/TopRatedMovies';
 
 export default function Home({ navigation }) {
@@ -14,17 +15,23 @@ export default function Home({ navigation }) {
 	const [upcoming, setUpcoming] = useState([])
 	const [topRated, setTopRated] = useState([])
 	const [popular, setPopular] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
-		getTrendingMovie();
-		getUpcomingMovie();
-		getTopRatedMovie()
-		getPopularMovie()
+
+
+			getTrendingMovie();
+			getUpcomingMovie();
+			getTopRatedMovie()
+			getPopularMovie()
+		
 	}, [])
 
 	const getTrendingMovie = async () => {
 		const data = await fetchTrendingMovie()
 		setTrending(data.results);
+		setIsLoading(false)
+		;
 		// console.log(data);
 	}
 
@@ -62,14 +69,20 @@ export default function Home({ navigation }) {
 
 
 			</SafeAreaView>
-			<ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
-				{trending.length > 0 && <TrendingMovies trending={trending} />}
-				
-				{upcoming.length > 0 && <UpComingMovies upcoming={upcoming} title={"Upcoming movie"} />}
-				{upcoming.length > 0 && <UpComingMovies upcoming={trending.reverse()} title={"Treding movie"} />}
-				{popular.length > 0 && <UpComingMovies upcoming={popular} title={'Popular movie'} />}
-				{topRated.length > 0 && <TrendingMovies trending={topRated} />}
-			</ScrollView>
+			{isLoading ? (
+			     <Loading/>
+			) : (
+				<ScrollView showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
+
+					{trending.length > 0 && <TrendingMovies trending={trending} />}
+
+					{upcoming.length > 0 && <UpComingMovies upcoming={upcoming} title={"Upcoming movie"} />}
+					{upcoming.length > 0 && <UpComingMovies upcoming={trending.reverse()} title={"Treding movie"} />}
+					{popular.length > 0 && <UpComingMovies upcoming={popular} title={'Popular movie'} />}
+					{topRated.length > 0 && <TrendingMovies trending={topRated} />}
+				</ScrollView>
+			)}
+
 
 
 

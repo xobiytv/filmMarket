@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screen/Home';
 import detailed from '../screen/detailed';
 import Ionicons  from 'react-native-vector-icons/Ionicons'
+import Movie from '../screen/Movie';
 
 
 const Tab = createBottomTabNavigator();
@@ -31,7 +32,7 @@ export default function tabNavigation() {
             // tabBarInactiveBackgroundColor: 'black'
         })}>
             <Tab.Screen name='Home' component={Home} options={{headerShown: false}} />
-            <Tab.Screen name='Detailed' component={detailed}  options={{headerShown: false, tabBarBadge: 12}} />
+            <Tab.Screen name='Movie' component={Movie}  options={{headerShown: false, tabBarBadge: 12}} />
         </Tab.Navigator>
     </NavigationContainer>
   )
