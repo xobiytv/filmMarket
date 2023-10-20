@@ -16,14 +16,14 @@ export default function UpComingMovies({ upcoming, title }) {
         contentContainerStyle={{ paddingHorizontal: 15 }}
       >
         {upcoming.map(item =>(
-          <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('Movie', item)}>
+          <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('Movie', item.id)}>
             <View className={'space-y-1 mr-4'}>
             <Image
               source={{ uri: image185(item.poster_path) }}
               className={'rounded-3xl '}
               style={{ width: width * 0.3, height: height * 0.2 }} 
             />
-            <Text className={'text-white'}>{item.title.length > 12 ? item.title.slice(0, 12 ) + '...': item.title} </Text>
+            <Text className={'text-white'}>{item.title.length > 12 ? item.title.slice(0, 12 ) + '...':  item.title} </Text>
           </View>
           </TouchableWithoutFeedback> 
           

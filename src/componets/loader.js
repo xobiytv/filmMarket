@@ -6,10 +6,10 @@ export default function loaders() {
     return (
         <AnimatedLoader
             visible={true}
-            overlayColor="#fff"
+            overlayColor='rgba(2,6,23, .5)'
             source={require("../../assets/loader.json")}
             animationStyle={styles.lottie}
-            speed={100}
+            speed={10}
         >
             <Text>Loding...</Text>
         </AnimatedLoader>

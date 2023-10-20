@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Dimensions, Image, TouchableWithoutFeedback, View } from 'react-native'
+import {  Dimensions, Image, TouchableWithoutFeedback } from 'react-native'
 import {image500 } from '../api'
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,7 +9,7 @@ export default function MovieCard({ item }) {
     const navigation = useNavigation()
     // console.log(item.poster_path);
     return (
-        <TouchableWithoutFeedback key={item.id} onPress={() => navigation.navigate('Movie', item)}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Movie', item.id)}>
 
             <Image 
                 source={{uri: image500(item.poster_path) }} 
